@@ -5,5 +5,6 @@ Summer 1 2022
 
 ### NP-Complete Problem: Subset Sum (SS)
 
+\
 Stav Rones\
 Bryan Keller
