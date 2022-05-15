@@ -1,11 +1,16 @@
+from ctypes.wintypes import tagMSG
 from lib2to3.pytree import Node
 import random
+from xmlrpc.client import Boolean
+
+from cv2 import RETR_CCOMP
 
 class BNode:    
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
+    def __init__(self, val: int, parent):
+        self.val: int = val
+        self.left: BNode = None
+        self.right: BNode = None
+        self.parent: BNode = parent
 
 ############################################################
 #################### Generate Instance #####################
@@ -54,29 +59,44 @@ def generateInstance(num):
 ###################### Solve Instance ######################
 ############################################################
 
-def createBinTreeRecursive(root, lst):
+def solveBinTreeRecursive(node: BNode, lst: list, target: int):
 
-    if (len(lst) == 0):
-        return
+    # Check solution
+    if (node.val == target):
+        printSolution(node)
+     
+    # Keep checking if not leaf node
+    if (len(lst) != 0):
+        
+        node.left = BNode(0, node)
+        node.right = BNode(lst[0], node)
 
-    root.left = BNode(0)
-    root.right = BNode(lst[0])
+        solveBinTreeRecursive(node.left, lst[1:len(lst)], target - node.val)
+        solveBinTreeRecursive(node.right, lst[1:len(lst)], target - node.val)
 
-    createBinTreeRecursive(root.left, lst[1:len(lst)])
-    createBinTreeRecursive(root.right, lst[1:len(lst)])
+    # Remove node from memory
+    if (node.parent):
+        if (node.parent.left == node):
+            node.parent.left = None
+        else:
+            node.parent.right = None
+    
+    return
 
-    return root
+def solveInstance(instance, target):
 
-def solveInstance(instance):
+    print(f'Solving for sum = {target} with instance {instance}')
 
     n = len(instance)
 
     if (n == 0):
         return False
 
-    root = createBinTreeRecursive(BNode(instance[0]), instance[1:n])
+    root = BNode(instance[0], None)
 
-    
+    root = solveBinTreeRecursive(root, instance[1:n], target)
+
+    print("-------------------------------------------------\n\n")
     
     return False
 
@@ -84,12 +104,48 @@ def solveInstance(instance):
 ########################## Helper ##########################
 ############################################################
 
-def printTreeByRow(root):
+def printLevelOrder(root):
+     
+    # Base case
+    if root is None:
+        return
+    # Create an empty queue for level order traversal
+    q = []
+     
+    # Enqueue root and initialize height
+    q.append(root)
+         
+    while q:
+     
+        # nodeCount (queue size) indicates number
+        # of nodes at current level.
+        count = len(q)
+         
+        # Dequeue all nodes of current level and
+        # Enqueue all nodes of next level
+        while count > 0:
+            temp = q.pop(0)
+            print(temp.val, end = ' ')
+            if temp.left:
+                q.append(temp.left)
+            if temp.right:
+                q.append(temp.right)
+ 
+            count -= 1
+        print(' ')
 
-    
+def printSolution(node: BNode):
+
+    str = "\tSolution found: ["
+
+    while (node):
+        if (node.val != 0):
+            str += f'{node.val}, '
+        node = node.parent
+
+    print(str + "]")
 
     return
-
 
 ############################################################
 ########################### Main ###########################
@@ -99,13 +155,19 @@ def main():
 
     seed = 1234
     random.seed(seed)
+    print()
 
-    for i in range(1):
-        instance = generateInstance(i)
+    # for i in range(1):
+    #     instance = generateInstance(i)
 
-        print(f'instance: {instance}')
+    #     print(f'instance: {instance}')
 
-        solveInstance(instance)
+    #     solveInstance(instance)
+
+    instance = [4, 3, 2, 2, 6]
+    target = 8
+    
+    solveInstance(instance, target)
 
 
 if __name__ == '__main__':
