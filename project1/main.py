@@ -179,7 +179,7 @@ def main():
 
     #     solveInstance(instance)
 
-    instance = [4, -1, 3, 2, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+    instance = [4, -1, 3, 2, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
     for target in range(-2,16):
         solveInstance(instance, target)
 

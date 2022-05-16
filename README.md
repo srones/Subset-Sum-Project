@@ -8,9 +8,10 @@ Stav Rones | Bryan Keller
 
 **Optimal Solver**: Given a set $S$ of integers of length $n$ and a target integer $T$, decide if there exists a subset of $S$ whose sum is exactly $T$
 
-### Solutions
-
-**Exhaustive:** 
+### Exhaustive Solution:** 
 
 1. Inclusion-exclusion: $O(n*2^n)$ time $O(n)$ memory, 
-    - s
+    - Uses a binary tree where each level corresponds to a list element. The left child of every node is 0, and the right child of every node is the next value in the list.
+    - Works for +, -, and 0 targets and list elements
+    - Returns True as soon as set is found, False if there does not exist a set
+
