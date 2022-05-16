@@ -1,9 +1,5 @@
-from ctypes.wintypes import tagMSG
-from lib2to3.pytree import Node
 import random
-from xmlrpc.client import Boolean
-
-from cv2 import RETR_CCOMP
+import time
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -54,25 +50,37 @@ def generateInstance(num):
 
     return ret
 
-
 ############################################################
 ###################### Solve Instance ######################
 ############################################################
 
+# Returns T or F
+# Works for +, - and 0 values
+
 def solveBinTreeRecursive(node: BNode, lst: list, target: int):
 
-    # Check solution
+    # Solution
     if (node.val == target):
-        printSolution(node)
-     
+
+        # Edge case (target = 0, root node)
+        if (not target == 0 and node.parent):
+            printSolution(node)
+            return True
+
+    # Base case (leaf node)
+    if (len(lst) == 0):
+        return False
+ 
     # Keep checking if not leaf node
     if (len(lst) != 0):
         
         node.left = BNode(0, node)
         node.right = BNode(lst[0], node)
 
-        solveBinTreeRecursive(node.left, lst[1:len(lst)], target - node.val)
-        solveBinTreeRecursive(node.right, lst[1:len(lst)], target - node.val)
+        if (solveBinTreeRecursive(node.left, lst[1:len(lst)], target - node.val)):
+            return True
+        if (solveBinTreeRecursive(node.right, lst[1:len(lst)], target - node.val)):
+            return True
 
     # Remove node from memory
     if (node.parent):
@@ -80,23 +88,30 @@ def solveBinTreeRecursive(node: BNode, lst: list, target: int):
             node.parent.left = None
         else:
             node.parent.right = None
-    
-    return
+
+    return False
 
 def solveInstance(instance, target):
 
     print(f'Solving for sum = {target} with instance {instance}')
 
-    n = len(instance)
+    start = time.perf_counter()
 
-    if (n == 0):
+    # Edge case
+    if (len(instance) == 0):
         return False
 
-    root = BNode(instance[0], None)
+    root = BNode(0, None)
+    solution = solveBinTreeRecursive(root, instance, target)
 
-    root = solveBinTreeRecursive(root, instance[1:n], target)
+    if (not solution):
+        print("\tNo solution found")
 
-    print("-------------------------------------------------\n\n")
+    end = time.perf_counter()
+
+    print(f'\tSolved in {end-start} seconds')
+
+    print("-------------------------------------------------\n")
     
     return False
 
@@ -164,10 +179,10 @@ def main():
 
     #     solveInstance(instance)
 
-    instance = [4, 3, 2, 2, 6]
-    target = 8
-    
-    solveInstance(instance, target)
+    instance = [4, -1, 3, 2, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+    for target in range(-2,16):
+        solveInstance(instance, target)
+
 
 
 if __name__ == '__main__':
