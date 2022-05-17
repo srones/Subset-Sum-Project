@@ -23,33 +23,32 @@ def generateInstance(num): #send function number to pick instance type
     instance = []
     target = 0
 
-    # 1-25 (INSTANCE I: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
+    # 1-25 (INSTANCE II: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
     if (num <= 25):
-        instance = np.random.randint(1,10e3,num)
+        instance = np.random.randint(1,10e3,num*4)
         target = (num/4) * 1000
 
         return instance, target
 
-    # 25-50 (INSTANCE II: Linear Congruential Generator)
+    #25-50 (INSTANCE III: Middle-Square Method)
     if (num > 25 and num <= 50):
-        while True:
-            m = (a * m + c) % modulus #what should i set modulus?
+        seed = 43512 #arbritrary number selected (must be even)
+        instance = []
+        for i in range((num-25)*4):
+            seed = int(str(seed * seed).zfill(8)[2:6])  # zfill adds padding of zeroes
+            instance.append(seed)
+            
+        target = int(str(seed * seed).zfill(8)[2:6])
+        return instance, target
     
-    #50-75 (INSTANCE III: XOR SHIFT)
-    if (num > 50 and num <= 75):
-        return
+    #50-75 (INSTANCE IV: Linear Congruential Generator)
+    #if (num > 25 and num <= 50):
+    #    while True:
+    #        m = (a * m + c) % modulus #what should i set modulus?
     
-    #75-100 (INSTANCE IV: Middle-Square Method)
-    if (num > 75 and num <= 100):
-        seed = 675248
-        #global seed
-        s = str(seed ** 2)
-        while len(s) != 12:
-            s = "0" + s
-        seed = int(s[3:9])
-        return seed
-
-    return instance, target
+    #75-100 (INSTANCE V: XOR SHIFT)
+    #if (num > 50 and num <= 75):
+    #    return
 
 def noSolutionInstance(n):
 
