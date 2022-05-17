@@ -3,6 +3,13 @@ import time
 import numpy as np
 from typing import Generator
 import matplotlib.pyplot as plt
+<<<<<<< Updated upstream
+=======
+
+a = 1664525
+m = 232
+c = 1013904223
+>>>>>>> Stashed changes
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -142,7 +149,7 @@ def solveInstance(instance, target):
 
     print("-------------------------------------------------\n")
     
-    return False
+    return end-start
 
 ############################################################
 ########################## Helper ##########################
@@ -191,6 +198,34 @@ def printSolution(node: BNode):
 
     return
 
+<<<<<<< Updated upstream
+=======
+def plotResults(metrics):
+
+    print(f'metrics: {metrics}')
+
+    time = []
+    size = []
+
+    for row in metrics:
+        size.append(row[1])
+        time.append(row[2])
+
+    plt.plot(size, time, 'g')
+
+    # x = np.arange(0,len(metrics),1)
+    # y = np.power(2, x)
+
+    # plt.plot(x,y, 'r')
+
+    plt.title('Worst Case')
+    plt.xlabel('Set size')
+    plt.ylabel('Time (sec)')
+
+    plt.show()
+
+    return
+>>>>>>> Stashed changes
 
 ############################################################
 ########################### Main ###########################
@@ -204,13 +239,19 @@ def main():
 
     metrics = []
 
+<<<<<<< Updated upstream
     plotSolutions(metrics)
 
     for i in range(100):
+=======
+    for i in range(19):
+>>>>>>> Stashed changes
         instance, target = noSolutionInstance(i)
         time = solveInstance(instance, target)
 
         metrics.append([i, len(instance), time])
+
+    plotResults(metrics)
 
 
 if __name__ == '__main__':

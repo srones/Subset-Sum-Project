@@ -15,3 +15,6 @@ Stav Rones | Bryan Keller
     - Works for +, -, and 0 targets and list elements
     - Returns True as soon as set is found, False if there does not exist a set
 
+### Benchmark ###
+
+1 - 30: Instances of size n = 0, 1, 2, ... 29 where no solution exists. Achieved by array of all 1s with target = 0.
