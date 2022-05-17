@@ -2,6 +2,7 @@ import random
 import time
 import numpy as np
 from typing import Generator
+
 a = 1664525
 m = 232
 c = 1013904223
@@ -19,11 +20,15 @@ class BNode:
 
 def generateInstance(num): #send function number to pick instance type
     
-    ret = []
+    instance = []
+    target = 0
 
     # 1-25 (INSTANCE I: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
-    if (num <= 25):        
-        ref = np.random.randint(1,10e3,num)
+    if (num <= 25):
+        instance = np.random.randint(1,10e3,num)
+        target = (num/4) * 1000
+
+        return instance, target
 
     # 25-50 (INSTANCE II: Linear Congruential Generator)
     if (num > 25 and num <= 50):
@@ -32,23 +37,33 @@ def generateInstance(num): #send function number to pick instance type
     
     #50-75 (INSTANCE III: XOR SHIFT)
     if (num > 50 and num <= 75):
-    
+        return
     
     #75-100 (INSTANCE IV: Middle-Square Method)
     if (num > 75 and num <= 100):
         seed = 675248
-        global seed
+        #global seed
         s = str(seed ** 2)
         while len(s) != 12:
             s = "0" + s
         seed = int(s[3:9])
         return seed
 
-    return ret
+    return instance, target
+
+def noSolutionInstance(n):
+
+    target = 0
+    instance = []
+
+    for i in range(n):
+        instance.append(1)
+
+    return instance, target
+
 
 ############################################################
 ###################### Solve Instance ######################
-############################################################
 
 # Returns T or F
 # Works for +, - and 0 values
@@ -89,13 +104,9 @@ def solveBinTreeRecursive(node: BNode, lst: list, target: int):
 
 def solveInstance(instance, target):
 
-    print(f'Solving for sum = {target} with instance {instance}')
+    print(f'Solving for target = {target} with instance (n={len(instance)}) {instance}')
 
     start = time.perf_counter()
-
-    # Edge case
-    if (len(instance) == 0):
-        return False
 
     root = BNode(0, None)
     solution = solveBinTreeRecursive(root, instance, target)
@@ -168,17 +179,13 @@ def main():
     random.seed(seed)
     print()
 
-    # for i in range(1):
-    #     instance = generateInstance(i)
+    metrics = []
 
-    #     print(f'instance: {instance}')
+    for i in range(100):
+        instance, target = noSolutionInstance(i)
+        time = solveInstance(instance, target)
 
-    #     solveInstance(instance)
-
-    instance = [4, -1, 3, 2, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
-    for target in range(-2,16):
-        solveInstance(instance, target)
-
+        metrics.append([i, len(instance), time])
 
 
 if __name__ == '__main__':
