@@ -1,5 +1,7 @@
 import random
 import time
+import numpy as np
+from typing import Generator
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -12,38 +14,19 @@ class BNode:
 #################### Generate Instance #####################
 ############################################################
 
-def generateInstance(num):
+def generateInstance(num): #send function number to pick instance type
     
     ret = []
 
-    # 5 / 100 
-    #################### Hand generated, easy to solve, length 10 #####################
-    if (num < 5):        
+    # 1-20 (INSTANCE I: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
+    if (num < 20):        
+        ref = np.random.randint(1,10e3,num)
 
-        if (num == 0):
-            ret = [0,0,0,0,0,0,0,0,0,0]
-
-        if (num == 1):
-            ret = [1,1,1,1,1,1,1,1,1,1]
-
-        if (num == 2):
-            ret = [0,1,2,3,4,5,6,7,8,9,10]
-
-        if (num == 3):
-            ret = [0,1,2,3,4,5,6,7,8,9,10]
-
-        if (num == 4):
-            ret = [0,1,2,3,4,5,6,7,8,9,10]
-
-        if (num == 5):
-            ret = [0,1,2,3,4,5,6,7,8,9,10]
-
-    # 20 / 100
-    #################### Random generated, length 100, range [0,1e6] #####################
-    if (num >= 5 and num < 20):
-
-        for i in range(100):
-            ret.append(random.randint(0,1e6))
+    # 20-40 (INSTANCE II: Linear Congruential Generator)
+    if (num >= 20 and num < 40):
+        while True:
+            seed = (a * seed + c) % modulus
+            yield seed
 
     # ? / 100
     ######################################## ??? #########################################
