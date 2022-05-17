@@ -3,10 +3,6 @@ import time
 import numpy as np
 from typing import Generator
 
-a = 1664525
-m = 232
-c = 1013904223
-
 class BNode:    
     def __init__(self, val: int, parent):
         self.val: int = val
