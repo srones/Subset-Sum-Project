@@ -37,14 +37,40 @@ def generateInstance(num): #send function number to pick instance type
         target = int(str(seed * seed).zfill(8)[2:6])
         return instance, target
     
-    #50-75 (INSTANCE IV: Linear Congruential Generator)
-    #if (num > 25 and num <= 50):
-    #    while True:
-    #        m = (a * m + c) % modulus #what should i set modulus?
+    #50-75 (INSTANCE IV: XOR SHIFT)
+    if (num > 50 and num <= 75):
+        xorshift_seed = 23525 #arbritrary
+        instance = []
+        
+        for i in range((num-50)*4):
+            xorshift_seed ^= xorshift_seed << 13
+            xorshift_seed ^= xorshift_seed >> 17
+            xorshift_seed ^= xorshift_seed << 5
+            xorshift_seed %= int("ffffffff", 16) # The modulus limits it to a 32-bit number
+            instance.append(xorshift_seed)
+        
+        xorshift_seed ^= xorshift_seed << 13
+        xorshift_seed ^= xorshift_seed >> 17
+        xorshift_seed ^= xorshift_seed << 5
+        xorshift_seed %= int("ffffffff", 16)
+        target = xorshift_seed
+        
+        return instance, target
     
-    #75-100 (INSTANCE V: XOR SHIFT)
-    #if (num > 50 and num <= 75):
-    #    return
+    #75-100 (INSTANCE IV: Linear Congruential Generator)
+    a = 1664525
+    modulus = 2**32
+    c = 1013904223
+    m = 19332
+    if (num > 75 and num <= 100):
+        for i in range((num-75)*4):
+            m = (a * m + c) % modulus
+            instance.append(m)
+        target = (a * m + c) % modulus 
+        return instance, target
+    
+    
+    return instance, target
 
 def noSolutionInstance(n):
 
