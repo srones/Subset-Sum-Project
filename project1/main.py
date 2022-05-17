@@ -2,6 +2,7 @@ import random
 import time
 import numpy as np
 from typing import Generator
+import matplotlib.pyplot as plt
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -190,6 +191,7 @@ def printSolution(node: BNode):
 
     return
 
+
 ############################################################
 ########################### Main ###########################
 ############################################################
@@ -201,6 +203,8 @@ def main():
     print()
 
     metrics = []
+
+    plotSolutions(metrics)
 
     for i in range(100):
         instance, target = noSolutionInstance(i)
