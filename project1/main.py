@@ -63,7 +63,7 @@ def generateInstance(num): #send function number to pick instance type
     c = 1013904223
     m = 19332
     if (num > 90 and num <= 119):
-        for i in range((num-89):
+        for i in range(num-89):
             m = (a * m + c) % modulus
             instance.append(m)
         target = (a * m + c) % modulus 
