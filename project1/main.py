@@ -3,13 +3,6 @@ import time
 import numpy as np
 from typing import Generator
 import matplotlib.pyplot as plt
-<<<<<<< Updated upstream
-=======
-
-a = 1664525
-m = 232
-c = 1013904223
->>>>>>> Stashed changes
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -26,6 +19,32 @@ def generateInstance(num): #send function number to pick instance type
     
     instance = []
     target = 0
+
+    # 0 - 29: Worst case no solution
+    if (num < 30):
+
+        for i in range(num):
+            instance.append(1)
+
+        return instance, target
+
+    if (num >= 30 and num < 50):
+
+        target = num - 29
+        indexes = random.sample(range(20), num-29)
+
+        for i in range(20):
+            if (i in indexes):
+                instance.append(1)
+            else:    
+                instance.append(0)
+
+        return instance, target
+
+    return
+
+    # --------------------------------------
+
 
     # 1-25 (INSTANCE II: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
     if (num <= 25):
@@ -85,10 +104,7 @@ def noSolutionInstance(n):
     target = 0
     instance = []
 
-    for i in range(n):
-        instance.append(1)
-
-    return instance, target
+    
 
 
 ############################################################
@@ -198,18 +214,16 @@ def printSolution(node: BNode):
 
     return
 
-<<<<<<< Updated upstream
-=======
 def plotResults(metrics):
 
-    print(f'metrics: {metrics}')
+    # print(f'metrics: {metrics}')
 
-    time = []
-    size = []
+    time = [1.34, 2.4742, 4.805, 9.4447, 19.8442, 37.227, 69.9, 152.95, 281.38, 583.3, 1137.85]
+    size = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 
-    for row in metrics:
-        size.append(row[1])
-        time.append(row[2])
+    # for row in metrics:
+    #     size.append(row[1])
+    #     time.append(row[2])
 
     plt.plot(size, time, 'g')
 
@@ -225,7 +239,6 @@ def plotResults(metrics):
     plt.show()
 
     return
->>>>>>> Stashed changes
 
 ############################################################
 ########################### Main ###########################
@@ -239,17 +252,21 @@ def main():
 
     metrics = []
 
-<<<<<<< Updated upstream
-    plotSolutions(metrics)
+    count = 0
 
-    for i in range(100):
-=======
-    for i in range(19):
->>>>>>> Stashed changes
-        instance, target = noSolutionInstance(i)
-        time = solveInstance(instance, target)
+    for i in range(52):
+        
+        # instance, target = noSolutionInstance(i)
+        # time = solveInstance(instance, target)
 
-        metrics.append([i, len(instance), time])
+        # metrics.append([i, len(instance), time])
+
+        instance, target = generateInstance(i)
+
+        if len(instance) > 28:
+            count += 1
+
+        print(f'instance {i} - target = {target}:\n{instance}\n')
 
     plotResults(metrics)
 
