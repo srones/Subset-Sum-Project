@@ -28,7 +28,7 @@ def generateInstance(num): #send function number to pick instance type
     # 25-50 (INSTANCE II: Linear Congruential Generator)
     if (num > 25 and num <= 50):
         while True:
-            m = (a * m + c) % modulus
+            m = (a * m + c) % modulus #what should i set modulus?
     
     #50-75 (INSTANCE III: XOR SHIFT)
     if (num > 50 and num <= 75):
