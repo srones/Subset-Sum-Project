@@ -19,30 +19,30 @@ def generateInstance(num): #send function number to pick instance type
     instance = []
     target = 0
 
-    # 1-25 (INSTANCE II: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
-    if (num <= 25):
-        instance = np.random.randint(1,10e3,num*4)
+    #INSTANCE: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister
+    if (num <= 29):
+        instance = np.random.randint(1,10e3,num)
         target = (num/4) * 1000
 
         return instance, target
 
-    #25-50 (INSTANCE III: Middle-Square Method)
-    if (num > 25 and num <= 50):
+    #INSTANCE: Middle-Square Method
+    if (num > 30 and num <= 59):
         seed = 43512 #arbritrary number selected (must be even)
         instance = []
-        for i in range((num-25)*4):
+        for i in range(num-29):
             seed = int(str(seed * seed).zfill(8)[2:6])  # zfill adds padding of zeroes
             instance.append(seed)
             
         target = int(str(seed * seed).zfill(8)[2:6])
         return instance, target
     
-    #50-75 (INSTANCE IV: XOR SHIFT)
-    if (num > 50 and num <= 75):
+    #INSTANCE: XOR SHIFT
+    if (num > 60 and num <= 89):
         xorshift_seed = 23525 #arbritrary
         instance = []
         
-        for i in range((num-50)*4):
+        for i in range(num-59):
             xorshift_seed ^= xorshift_seed << 13
             xorshift_seed ^= xorshift_seed >> 17
             xorshift_seed ^= xorshift_seed << 5
@@ -57,13 +57,13 @@ def generateInstance(num): #send function number to pick instance type
         
         return instance, target
     
-    #75-100 (INSTANCE IV: Linear Congruential Generator)
+    #INSTANCE: Linear Congruential Generator
     a = 1664525
     modulus = 2**32
     c = 1013904223
     m = 19332
-    if (num > 75 and num <= 100):
-        for i in range((num-75)*4):
+    if (num > 90 and num <= 119):
+        for i in range((num-89):
             m = (a * m + c) % modulus
             instance.append(m)
         target = (a * m + c) % modulus 
