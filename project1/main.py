@@ -23,7 +23,10 @@ def generateInstance(num): #send function number to pick instance type
         ref = np.random.randint(1,10e3,num)
 
     # 20-40 (INSTANCE II: Linear Congruential Generator)
-    if (num >= 20 and num < 40):
+    if (num >= 20 and num <= 40):
+        a = 1664525
+        m = 232
+        c = 1013904223
         while True:
             seed = (a * seed + c) % modulus
             yield seed
