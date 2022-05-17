@@ -2,6 +2,9 @@ import random
 import time
 import numpy as np
 from typing import Generator
+a = 1664525
+m = 232
+c = 1013904223
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -18,21 +21,28 @@ def generateInstance(num): #send function number to pick instance type
     
     ret = []
 
-    # 1-20 (INSTANCE I: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
-    if (num < 20):        
+    # 1-25 (INSTANCE I: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
+    if (num <= 25):        
         ref = np.random.randint(1,10e3,num)
 
-    # 20-40 (INSTANCE II: Linear Congruential Generator)
-    if (num >= 20 and num <= 40):
-        a = 1664525
-        m = 232
-        c = 1013904223
+    # 25-50 (INSTANCE II: Linear Congruential Generator)
+    if (num > 25 and num <= 50):
         while True:
-            seed = (a * seed + c) % modulus
-            yield seed
-
-    # ? / 100
-    ######################################## ??? #########################################
+            m = (a * m + c) % modulus
+    
+    #50-75 (INSTANCE III: XOR SHIFT)
+    if (num > 50 and num <= 75):
+    
+    
+    #75-100 (INSTANCE IV: Middle-Square Method)
+    if (num > 75 and num <= 100):
+        seed = 675248
+        global seed
+        s = str(seed ** 2)
+        while len(s) != 12:
+            s = "0" + s
+        seed = int(s[3:9])
+        return seed
 
     return ret
 
