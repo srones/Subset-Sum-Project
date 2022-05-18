@@ -3,6 +3,7 @@ import time
 import numpy as np
 from typing import Generator
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 class BNode:    
     def __init__(self, val: int, parent):
@@ -20,7 +21,7 @@ def generateInstance(num): #send function number to pick instance type
     instance = []
     target = 0
 
-    # 0 - 29: Worst case no solution
+    # 30 Worst case no solution
     if (num < 30):
 
         for i in range(num):
@@ -28,6 +29,9 @@ def generateInstance(num): #send function number to pick instance type
 
         return instance, target
 
+    # ----------------------------------------
+
+    # 20 Average
     if (num >= 30 and num < 50):
 
         target = num - 29
@@ -41,35 +45,38 @@ def generateInstance(num): #send function number to pick instance type
 
         return instance, target
 
-    return
+    # ----------------------------------------
 
-    # --------------------------------------
-
-
-    # 1-25 (INSTANCE II: RANDOM NUMBERS USED RAND FUNCTION AKA Mersenne Twister)
-    if (num <= 25):
-        instance = np.random.randint(1,10e3,num*4)
+    # 15 Rand
+    if (num >= 50 and num < 65):
+        instance = np.random.randint(1,10e3, num-35)
         target = (num/4) * 1000
-
         return instance, target
 
-    #25-50 (INSTANCE III: Middle-Square Method)
-    if (num > 25 and num <= 50):
+    # ----------------------------------------
+
+    # 15 Rand Middle-Square
+    if (num >= 65 and num < 80):
+
         seed = 43512 #arbritrary number selected (must be even)
-        instance = []
-        for i in range((num-25)*4):
+        
+        for i in range(num-50):
             seed = int(str(seed * seed).zfill(8)[2:6])  # zfill adds padding of zeroes
             instance.append(seed)
-            
+
         target = int(str(seed * seed).zfill(8)[2:6])
+
         return instance, target
+
+    # ----------------------------------------
     
-    #50-75 (INSTANCE IV: XOR SHIFT)
-    if (num > 50 and num <= 75):
+    # 10 Rand XOR SHIFT
+    if (num >= 80 and num < 90):
+
         xorshift_seed = 23525 #arbritrary
         instance = []
         
-        for i in range((num-50)*4):
+        for i in range(num-60):
             xorshift_seed ^= xorshift_seed << 13
             xorshift_seed ^= xorshift_seed >> 17
             xorshift_seed ^= xorshift_seed << 5
@@ -83,29 +90,24 @@ def generateInstance(num): #send function number to pick instance type
         target = xorshift_seed
         
         return instance, target
+
+    # ----------------------------------------
     
-    #75-100 (INSTANCE IV: Linear Congruential Generator)
+    # 10 rand Linear Congruential Generator
+
     a = 1664525
     modulus = 2**32
     c = 1013904223
     m = 19332
-    if (num > 75 and num <= 100):
-        for i in range((num-75)*4):
+    if (num >= 90 and num < 100):
+
+        for i in range(num-70):
             m = (a * m + c) % modulus
             instance.append(m)
         target = (a * m + c) % modulus 
         return instance, target
-    
-    
+
     return instance, target
-
-def noSolutionInstance(n):
-
-    target = 0
-    instance = []
-
-    
-
 
 ############################################################
 ###################### Solve Instance ######################
@@ -113,7 +115,13 @@ def noSolutionInstance(n):
 # Returns T or F
 # Works for +, - and 0 values
 
-def solveBinTreeRecursive(node: BNode, lst: list, target: int):
+MAX_TIME = 60
+
+def solveBinTreeRecursive(node: BNode, lst: list, target: int, start):
+
+    if (time.perf_counter() - start >= MAX_TIME):
+        print("-- Timeout --")
+        return False
 
     # Solution
     if (node.val == target):
@@ -133,9 +141,9 @@ def solveBinTreeRecursive(node: BNode, lst: list, target: int):
         node.left = BNode(0, node)
         node.right = BNode(lst[0], node)
 
-        if (solveBinTreeRecursive(node.left, lst[1:len(lst)], target - node.val)):
+        if (solveBinTreeRecursive(node.left, lst[1:len(lst)], target - node.val, start)):
             return True
-        if (solveBinTreeRecursive(node.right, lst[1:len(lst)], target - node.val)):
+        if (solveBinTreeRecursive(node.right, lst[1:len(lst)], target - node.val, start)):
             return True
 
     # Remove node from memory
@@ -154,18 +162,18 @@ def solveInstance(instance, target):
     start = time.perf_counter()
 
     root = BNode(0, None)
-    solution = solveBinTreeRecursive(root, instance, target)
+    solution = solveBinTreeRecursive(root, instance, target, start)
 
     if (not solution):
         print("\tNo solution found")
 
     end = time.perf_counter()
 
-    print(f'\tSolved in {end-start} seconds')
+    print(f'\tFinished in {end-start} seconds')
 
     print("-------------------------------------------------\n")
     
-    return end-start
+    return solution, end-start
 
 ############################################################
 ########################## Helper ##########################
@@ -214,6 +222,13 @@ def printSolution(node: BNode):
 
     return
 
+def printInstance(i, instance, target):
+    
+    print(f'Target: {target}, n = {len(instance)}\n {instance}')
+
+    if (i in [29, 49, 64, 79, 89]):
+        print(f'----------------------')
+
 def plotResults(metrics):
 
     # print(f'metrics: {metrics}')
@@ -240,6 +255,12 @@ def plotResults(metrics):
 
     return
 
+def saveResult(filename, i, instance, target, solution, time):
+
+    f = open(filename, "a")
+    f.write(f'i: {i}, Target: {target}, n: {len(instance)}, solution: {solution}, time: {time}, instance: \n{instance}\n')
+    f.close()
+
 ############################################################
 ########################### Main ###########################
 ############################################################
@@ -250,26 +271,17 @@ def main():
     random.seed(seed)
     print()
 
-    metrics = []
+    filename = datetime.now().strftime("%m.%d.%Y_%H:%M:%S.txt")
+    f = open(filename, "w")
 
-    count = 0
-
-    for i in range(52):
+    for i in range(1, 100):
         
-        # instance, target = noSolutionInstance(i)
-        # time = solveInstance(instance, target)
-
-        # metrics.append([i, len(instance), time])
-
         instance, target = generateInstance(i)
+        # printInstance(i, instance, target)
 
-        if len(instance) > 28:
-            count += 1
+        solution, time = solveInstance(instance, target)
 
-        print(f'instance {i} - target = {target}:\n{instance}\n')
-
-    plotResults(metrics)
-
+        saveResult(filename, i, instance, target, solution, time)
 
 if __name__ == '__main__':
     main()
