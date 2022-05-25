@@ -18,3 +18,6 @@ Stav Rones | Bryan Keller
 ### Benchmark ###
 
 1 - 30: Instances of size n = 0, 1, 2, ... 29 where no solution exists. Achieved by array of all 1s with target = 0.
+
+
+TODO: Include negative numbers and targets
