@@ -49,9 +49,10 @@ def generateInstance(num): #send function number to pick instance type
 
     # 15 Rand
     if (num >= 50 and num < 65):
-        instance = np.random.randint(1,10e3, num-35)
+        instance: np.ndarray = np.random.randint(1,10e3, num-35)
         target = (num/4) * 1000
-        return instance, target
+
+        return instance.tolist(), target
 
     # ----------------------------------------
 
@@ -175,6 +176,34 @@ def solveInstance(instance, target):
     
     return solution, end-start
 
+def greedySolver(instance: list[int], target):
+
+    print(f'Greedy Solving for target = {target} with instance (n={len(instance)}) {instance}')
+
+    start = time.perf_counter()
+
+    # sort
+    instance.sort(reverse=True)
+
+    sum = 0
+    for i in range(len(instance)):
+
+        element = instance[i]
+
+        if sum + element <= target:
+            sum += element
+
+    if sum + instance[-1] - target < target - sum:
+        sum += instance[-1]
+
+    end = time.perf_counter()
+
+    print(f'\tGreedy |target-sum| = {abs(target - sum)}')
+    print(f'\tFinished in {end-start} seconds')
+    print("-------------------------------------------------\n")
+
+    return True, end-start
+
 ############################################################
 ########################## Helper ##########################
 ############################################################
@@ -279,7 +308,10 @@ def main():
         instance, target = generateInstance(i)
         # printInstance(i, instance, target)
 
-        solution, time = solveInstance(instance, target)
+        # solution, time = solveInstance(instance, target)
+        print(f'i: {i}')
+
+        solution, time = greedySolver(instance, target)
 
         saveResult(filename, i, instance, target, solution, time)
 

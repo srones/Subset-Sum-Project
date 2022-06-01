@@ -1,0 +1,98 @@
+i: 1, Target: 0, n: 1, solution: True, time: 2.8329999999243682e-06, instance: 
+[1]
+i: 2, Target: 0, n: 2, solution: True, time: 2.4830000000530816e-06, instance: 
+[1, 1]
+i: 3, Target: 0, n: 3, solution: True, time: 1.9959999999485944e-06, instance: 
+[1, 1, 1]
+i: 4, Target: 0, n: 4, solution: True, time: 1.888999999977159e-06, instance: 
+[1, 1, 1, 1]
+i: 5, Target: 0, n: 5, solution: True, time: 1.8099999998799632e-06, instance: 
+[1, 1, 1, 1, 1]
+i: 6, Target: 0, n: 6, solution: True, time: 1.8389999998369433e-06, instance: 
+[1, 1, 1, 1, 1, 1]
+i: 7, Target: 0, n: 7, solution: True, time: 1.8090000000192674e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1]
+i: 8, Target: 0, n: 8, solution: True, time: 1.7549999999921795e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1]
+i: 9, Target: 0, n: 9, solution: True, time: 1.8960000001122523e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 10, Target: 0, n: 10, solution: True, time: 2.0140000001056535e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 11, Target: 0, n: 11, solution: True, time: 1.9419999999215065e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 12, Target: 0, n: 12, solution: True, time: 1.751999999966003e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 13, Target: 0, n: 13, solution: True, time: 1.8880000001164632e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 14, Target: 0, n: 14, solution: True, time: 1.7450000000529542e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 15, Target: 0, n: 15, solution: True, time: 1.9710000001005312e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 16, Target: 0, n: 16, solution: True, time: 1.8610000001029192e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 17, Target: 0, n: 17, solution: True, time: 2.005000000027124e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 18, Target: 0, n: 18, solution: True, time: 1.668999999981935e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 19, Target: 0, n: 19, solution: True, time: 3.312999999893762e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 20, Target: 0, n: 20, solution: True, time: 2.897999999973422e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 21, Target: 0, n: 21, solution: True, time: 2.096000000006981e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 22, Target: 0, n: 22, solution: True, time: 1.7919999999449487e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 23, Target: 0, n: 23, solution: True, time: 7.2099999999242215e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 24, Target: 0, n: 24, solution: True, time: 2.5169999999796744e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 25, Target: 0, n: 25, solution: True, time: 2.165999999803603e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 26, Target: 0, n: 26, solution: True, time: 1.861999999963615e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 27, Target: 0, n: 27, solution: True, time: 1.6400000000249548e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 28, Target: 0, n: 28, solution: True, time: 4.324000000055506e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 29, Target: 0, n: 29, solution: True, time: 1.9019999999425607e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+i: 30, Target: 1, n: 20, solution: True, time: 2.767000000014619e-06, instance: 
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 31, Target: 2, n: 20, solution: True, time: 2.376000000081646e-06, instance: 
+[1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 32, Target: 3, n: 20, solution: True, time: 2.733999999948722e-06, instance: 
+[1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 33, Target: 4, n: 20, solution: True, time: 9.972999999829923e-06, instance: 
+[1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 34, Target: 5, n: 20, solution: True, time: 4.258000000145756e-06, instance: 
+[1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 35, Target: 6, n: 20, solution: True, time: 3.5439999999109517e-06, instance: 
+[1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 36, Target: 7, n: 20, solution: True, time: 3.3329999999942572e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 37, Target: 8, n: 20, solution: True, time: 3.551000000046045e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 38, Target: 9, n: 20, solution: True, time: 3.455999999957271e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 39, Target: 10, n: 20, solution: True, time: 3.4879999999404276e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 40, Target: 11, n: 20, solution: True, time: 3.4030000000129235e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 41, Target: 12, n: 20, solution: True, time: 3.6869999999744607e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+i: 42, Target: 13, n: 20, solution: True, time: 3.874999999986528e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+i: 43, Target: 14, n: 20, solution: True, time: 3.777999999954318e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+i: 44, Target: 15, n: 20, solution: True, time: 3.8159999999898275e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0]
+i: 45, Target: 16, n: 20, solution: True, time: 3.930999999957052e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0]
+i: 46, Target: 17, n: 20, solution: True, time: 3.838999999894455e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+i: 47, Target: 18, n: 20, solution: True, time: 4.031000000015439e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+i: 48, Target: 19, n: 20, solution: True, time: 4.05300000005937e-06, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+i: 49, Target: 20, n: 20, solution: True, time: 1.3594999999977375e-05, instance: 
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]

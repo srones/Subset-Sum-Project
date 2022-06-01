@@ -8,6 +8,26 @@ Stav Rones | Bryan Keller
 
 **Optimal Solver**: Given a set $S$ of integers of length $n$ and a target integer $T$, decide if there exists a subset of $S$ whose sum is exactly $T$
 
+### Benchmark ###
+
+1 - 30: Instances of size n = 0, 1, 2, ... 29 where no solution exists. Achieved by array of all 1s with target = 0.
+
+31 - 50: Instances of size n = 20 where 1 solution exists whose size is inscreasing from 1 to 20 and whose positions are random.
+
+51 - 65: Instances of size n = 15, 17, ... 29 with random elements in range [0,10e3] and a target of n * 1000 / 4
+
+66 - 80: Instances of size n = 15, 17, ... 29 with random elements and target using the middle square method
+
+81 - 90: Instances of size n = 20, 21, ... 29 with random elements and target using xor shift method
+
+91 - 100: Instances of size n = 20, 21, ... 29 with random elements and target using the linear congruential generator method
+
+
+TODO: 
+    - Include negative numbers and targets
+
+
+
 ### Exhaustive Solution:** 
 
 1. Inclusion-exclusion: $O(n*2^n)$ time $O(n)$ memory, 
@@ -15,9 +35,5 @@ Stav Rones | Bryan Keller
     - Works for +, -, and 0 targets and list elements
     - Returns True as soon as set is found, False if there does not exist a set
 
-### Benchmark ###
-
-1 - 30: Instances of size n = 0, 1, 2, ... 29 where no solution exists. Achieved by array of all 1s with target = 0.
 
 
-TODO: Include negative numbers and targets
