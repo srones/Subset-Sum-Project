@@ -313,7 +313,7 @@ def main():
 
         solution, time = greedySolver(instance, target)
 
-        saveResult(filename, i, instance, target, solution, time)
+        # saveResult(filename, i, instance, target, solution, time)
 
 if __name__ == '__main__':
     main()
