@@ -1,4 +1,5 @@
 import random
+import statistics
 import time
 import numpy as np
 from typing import Generator
@@ -176,7 +177,7 @@ def solveInstance(instance, target):
     
     return solution, end-start
 
-def greedySolver(instance: list[int], target):
+def greedySolver(instance: list[int], target) -> tuple[int, float]:
 
     print(f'Greedy Solving for target = {target} with instance (n={len(instance)}) {instance}')
 
@@ -198,11 +199,11 @@ def greedySolver(instance: list[int], target):
 
     end = time.perf_counter()
 
-    print(f'\tGreedy |target-sum| = {abs(target - sum)}')
+    # print(f'\tGreedy accuracy = {1 - abs(target - sum) / target}')
     print(f'\tFinished in {end-start} seconds')
     print("-------------------------------------------------\n")
 
-    return True, end-start
+    return sum, end-start
 
 ############################################################
 ########################## Helper ##########################
@@ -290,9 +291,47 @@ def saveResult(filename, i, instance, target, solution, time):
     f.write(f'i: {i}, Target: {target}, n: {len(instance)}, solution: {solution}, time: {time}, instance: \n{instance}\n')
     f.close()
 
+def saveGreedyResult(filename, i, instance: list[int], target, solution, time):
+
+    f = open(filename, "a")
+
+    mean = sum(instance) / len(instance)
+    var = np.array(instance).std()
+
+    accuracy = "NaN"
+    if not target == 0:
+        accuracy = 1 - abs(target - solution) / target
+
+    f.write(f'{i}, {len(instance)}, {target}, {mean}, {var}, {accuracy}\n')
+
+    f.close()
+
+
 ############################################################
 ########################### Main ###########################
 ############################################################
+
+def mainGreedy():
+
+    seed = 1234
+    random.seed(seed)
+    print()
+
+    filename = "greedy_" + datetime.now().strftime("%m.%d.%Y_%H:%M:%S.csv")
+    f = open(filename, "w")
+    
+    f.write(f'i, n, Target, Mean, Variance, Greedy Accuracy\n')
+    f.close()
+
+    for i in range(1, 100):
+        
+        instance, target = generateInstance(i)
+
+        solution, time = greedySolver(instance, target)
+
+        saveGreedyResult(filename, i, instance, target, solution, time)
+
+    return
 
 def main():
 
@@ -316,4 +355,5 @@ def main():
         # saveResult(filename, i, instance, target, solution, time)
 
 if __name__ == '__main__':
-    main()
+    # main()
+    mainGreedy()
