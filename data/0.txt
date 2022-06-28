@@ -1,0 +1,6 @@
+data;
+param T := 0;
+param N := 0;
+param W := 
+;
+end;

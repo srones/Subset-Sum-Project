@@ -25,6 +25,7 @@ Stav Rones | Bryan Keller
 
 TODO: 
     - Include negative numbers and targets
+    - Include non-integer numbers
 
 
 
@@ -35,5 +36,28 @@ TODO:
     - Works for +, -, and 0 targets and list elements
     - Returns True as soon as set is found, False if there does not exist a set
 
+### Greedy Solution:** 
 
+### ILP Solution:** 
 
+ILP formulation of SS:
+
+    Given a set of integers X = {x_1, x_2, ... x_n}, binary variables Y = {y_1, y_1, ... y_n}, and a target T,
+    
+    Maximize: 
+
+        (x_1)(y_1) + (x_2)(y_2) + ... + (x_n)(y_n)
+
+    Constraints:
+
+        (x_1)(y_1) + (x_2)(y_2) + ... + (x_n)(y_n) <= T
+        y_i = binary
+
+[] What is a bound for the LP formulation?
+[] Convert instances to ILP formulation
+[] Solve all ILP with time limits
+
+ILP -> LP Relaxation -> Lower Bound 
+
+**AMPL / CPLEX**
+- 
