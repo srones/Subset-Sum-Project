@@ -111,6 +111,33 @@ def generateInstance(num): #send function number to pick instance type
 
     return instance, target
 
+def readBenchmark(i: int):
+
+    f = open("benchmark.txt", "r")
+
+    instance = []
+    target = 0
+
+    readingInstance = False
+
+    for line in f:
+
+        if "i" in line:
+
+            if i == int(line.split()[1]):
+                target = int(line.split()[3])
+                readingInstance = True
+                continue
+
+        if readingInstance:
+            for e in line.split(" "):
+                if e != "\n":
+                    instance.append(int(e))    
+            f.close()
+            return instance, target
+
+    return instance, target
+
 ############################################################
 ###################### Solve Instance ######################
 
@@ -302,7 +329,7 @@ def saveGreedyResult(filename, i, instance: list[int], target, solution, time):
     if not target == 0:
         accuracy = 1 - abs(target - solution) / target
 
-    f.write(f'{i}, {len(instance)}, {target}, {mean}, {var}, {accuracy}\n')
+    f.write(f'{i}, {len(instance)}, {target}, {mean}, {var}, {accuracy}, {solution}\n')
 
     f.close()
 
@@ -317,15 +344,17 @@ def mainGreedy():
     random.seed(seed)
     print()
 
-    filename = "greedy_" + datetime.now().strftime("%m.%d.%Y_%H:%M:%S.csv")
+    # filename = "greedy_" + datetime.now().strftime("%m.%d.%Y_%H:%M:%S.csv")
+    filename = "greedy_sln"
     f = open(filename, "w")
     
-    f.write(f'i, n, Target, Mean, Variance, Greedy Accuracy\n')
+    f.write(f'i, n, Target, Mean, Variance, Greedy Accuracy, solution\n')
     f.close()
 
     for i in range(1, 100):
         
-        instance, target = generateInstance(i)
+        # instance, target = generateInstance(i)
+        instance, target = readBenchmark(i)
 
         solution, time = greedySolver(instance, target)
 

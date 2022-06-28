@@ -18,23 +18,9 @@ def export_ILP(i: int, instance: list[int], target: int):
 
     return
 
-def main():
+def parseILP(i: int):
 
-    print()
-
-    for i in range(100):
-
-        instance, target = generateInstance(i)
-
-        export_ILP(i, instance, target)
-    
-    print()
-
-    return
-
-def readFile(i: int):
-
-    filename = f'out/{i}.txt'
+    filename = f'ILP_raw_sln/{i}.txt'
     f = open(filename, "r")
 
     time = 0.0
@@ -85,7 +71,7 @@ def readFile(i: int):
         if solution[j] == 1:
             value += instance[j]
 
-    outf = open(f'out1/instance{i}.txt', "w")
+    outf = open(f'ILP_parsed_sln/instance{i}.txt', "w")
 
     outf.write(f'N: {N}\n')
     outf.write(f'time: {time}')
@@ -97,13 +83,102 @@ def readFile(i: int):
 
     return
 
-def mainRead():
+def generateBenchmark():
 
-    for i in range(99):
-        readFile(i)
+    f = open("benchmark.txt", "w")
+
+    for i in range(100):
+
+        instance, target = generateInstance(i)
+
+        f.write(f'i {i} T {int(target)}\n')
+        f.write(" ".join(str(e) for e in instance) + "\n")
+
+    f.close()
 
     return
 
+def readBenchmark(i: int):
+
+    f = open("benchmark.txt", "r")
+
+    instance = []
+    target = 0
+
+    readingInstance = False
+
+    for line in f:
+
+        if "i" in line:
+
+            if i == int(line.split()[1]):
+                target = int(line.split()[3])
+                readingInstance = True
+                continue
+
+        if readingInstance:
+            for e in line.split(" "):
+                if e != "\n":
+                    instance.append(int(e))    
+            f.close()
+            return instance, target
+
+    return instance, target
+
+def compileGreedyILP(i):
+
+    instance, target = readBenchmark(i)
+
+    # greedy
+    f_greedy = open("greedy_sln", "r")
+
+    sGreedy = 0
+    for line in f_greedy:
+
+        if line[0] == "i":
+            continue
+
+        if int(line.split(",")[0]) == i:
+            sGreedy = line.split()[6]
+
+    # ILP
+    f_ilp = open(f'ILP_parsed_sln/instance{i}.txt')
+
+    sILP = 0
+    for line in f_ilp:
+        if "value" in line:
+            sILP = line.split()[1]
+        if "time" in line:
+            tILP = line.split()[1]
+    f_ilp.close()
+
+    # compile
+    f = open("Greedy_ILP", "a")
+    print(f'{i}, {len(instance)}, {int(target)}, {sGreedy}, {sILP}, {tILP}\n')
+    f.write(f'{i}, {len(instance)}, {int(target)}, {sGreedy}, {sILP}, {tILP}\n')
+    f.close()
+
+    return 
+
+def main():
+
+    # export_ILP()
+    
+    # generateBenchmark()
+
+    f = open("Greedy_ILP", "w")
+    f.write(f'i, N, T, sGreedy, sILP, tILP\n')
+
+    for i in range(100):
+
+        compileGreedyILP(i)
+
+        # instance, target = readBenchmark(i)
+        # export_ILP(i, instance, target)
+        # parseILP(i)
+
+        
+    return
+
 if __name__ == '__main__':
-    # main()
-    mainRead()
+    main()
