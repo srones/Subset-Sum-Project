@@ -144,7 +144,7 @@ def readBenchmark(i: int):
 # Returns T or F
 # Works for +, - and 0 values
 
-MAX_TIME = 60
+MAX_TIME = 600
 
 def solveBinTreeRecursive(node: BNode, lst: list, target: int, start):
 
@@ -362,27 +362,24 @@ def mainGreedy():
 
     return
 
-def main():
+def mainExhaustive():
 
-    seed = 1234
-    random.seed(seed)
-    print()
+    f = open("Exhaustive_sln", "w")
+    f.write("i, N, T, sExh, tExh\n")
+    f.close()
 
-    filename = datetime.now().strftime("%m.%d.%Y_%H:%M:%S.txt")
-    f = open(filename, "w")
+    for i in range(100):
 
-    for i in range(1, 100):
-        
-        instance, target = generateInstance(i)
-        # printInstance(i, instance, target)
+        instance, target = readBenchmark(i)
 
-        # solution, time = solveInstance(instance, target)
-        print(f'i: {i}')
+        solution, time = solveInstance(instance, target)
 
-        solution, time = greedySolver(instance, target)
+        f = open("Exhaustive10_sln", "a")
+        f.write(f'{i}, {len(instance)}, {target}, {solution}, {time}\n')
+        f.close()
 
-        # saveResult(filename, i, instance, target, solution, time)
+    return
 
 if __name__ == '__main__':
-    # main()
-    mainGreedy()
+    mainExhaustive()
+    # mainGreedy()
