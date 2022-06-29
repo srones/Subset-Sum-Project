@@ -26,14 +26,13 @@ def main():
         s_exh10 = -1
         t_exh10 = -1
 
-        # f_exh10 = open("Exhaustive10_sln", "r")
-        # for line in f_exh10:
-        #     if line.split()[0] == str(i):
-        #         s_exh10 = line.split()[3]
-        #         t_exh10 = line.split()[4]
-        #         break
-
-        # f_exh1.close()
+        f_temp = open("Exhaustive10_sln", "r")
+        for line in f_temp:
+            if line.split(", ")[0] == str(i):
+                s_exh10 = line.split(", ")[3]
+                t_exh10 = line.strip().split(", ")[4]
+                break
+        f_temp.close()
 
         # greedy | ILP
         s_greedy = -1
@@ -58,8 +57,8 @@ def main():
         f_temp = open("DP.txt", "r")
         for line in f_temp:
             if line.split(", ")[0] == str(i):
-                s_dp = line.split()[1]
-                t_dp = line.strip().split()[2]
+                s_dp = line.split(", ")[1]
+                t_dp = line.strip(", ").split()[2]
                 break
 
         f_temp.close()
