@@ -329,7 +329,7 @@ def saveGreedyResult(filename, i, instance: list[int], target, solution, time):
     if not target == 0:
         accuracy = 1 - abs(target - solution) / target
 
-    f.write(f'{i}, {len(instance)}, {target}, {mean}, {var}, {accuracy}, {solution}\n')
+    f.write(f'{i}, {len(instance)}, {target}, {mean}, {var}, {accuracy}, {solution}, {time}\n')
 
     f.close()
 
@@ -348,7 +348,7 @@ def mainGreedy():
     filename = "greedy_sln"
     f = open(filename, "w")
     
-    f.write(f'i, n, Target, Mean, Variance, Greedy Accuracy, solution\n')
+    f.write(f'i, n, Target, Mean, Variance, Greedy Accuracy, solution, time\n')
     f.close()
 
     for i in range(1, 100):
@@ -381,5 +381,5 @@ def mainExhaustive():
     return
 
 if __name__ == '__main__':
-    mainExhaustive()
-    # mainGreedy()
+    # mainExhaustive()
+    mainGreedy()
