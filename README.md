@@ -3,7 +3,7 @@
     Summer I, 2022
     Bryan Keller & Stav Rones
 
-This project implements and evaluates the performance of different approaches to solving the famous [Subset Sum Problem](https://en.wikipedia.org/wiki/Subset_sum_problem).  The following methods were used to find optimal and [hueristic](https://en.wikipedia.org/wiki/Heuristic_(computer_science)) solutions:
+This project implements and evaluates the performance of different approaches to solving the famous [Subset Sum Problem](https://en.wikipedia.org/wiki/Subset_sum_problem).  The following methods were used to find optimal and [heuristic](https://en.wikipedia.org/wiki/Heuristic_(computer_science)) solutions:
 
 - Exhaustive search
 - Greedy algorithm
@@ -63,7 +63,7 @@ The [Inclusion-exclusion principle](https://en.wikipedia.org/wiki/Inclusion%E2%8
 
 ## Greedy Solution
 
-[Greedy algorithms](https://en.wikipedia.org/wiki/Greedy_algorithm) are a problem solving huerestic that make the optimal choice at each stage. To implement this for SS, the set ordered using timesort and traversed until the sum is $>=$ the target. This has a time complexity of $O(n*log(n))$, and does not always find the optimal solution. 
+[Greedy algorithms](https://en.wikipedia.org/wiki/Greedy_algorithm) are a problem solving heurestic that make the optimal choice at each stage. To implement this for SS, the set ordered using timesort and traversed until the sum is $>=$ the target. This has a time complexity of $O(n*log(n))$, and does not always find the optimal solution. 
 
 ## ILP Solution
 
@@ -82,5 +82,5 @@ SS.mod contains the AMPL model for the CPLEX solver, which uses LP relaxation as
 
 ## Local Search Solution
 
-[Local search](https://en.wikipedia.org/wiki/Local_search_(optimization)) is a hueristic that modifies an initial non-optimal candidate solution to make it more optimal. 
+[Local search](https://en.wikipedia.org/wiki/Local_search_(optimization)) is a heuristic that modifies an initial non-optimal candidate solution to make it more optimal. 
 This local search algorithm uses a [1-Opt](https://en.wikipedia.org/wiki/2-opt) neighborhood - meaning that the local search checks every subset that either includes or excludes 1 element relative to the initial solution. If a more optimal solution is found, it is used as the initial solution for another round of local search, and this process is repeated until no better solution is found.
