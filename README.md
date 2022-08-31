@@ -13,7 +13,7 @@ This project implements and evaluates the performance of different approaches to
 
 The results of each algorithm are detailed in the PDF report.
 
-# Subset Sum (SS) Problem
+## Subset Sum (SS) Problem
 
 Subset Sum is a nondeterministic polynomial-time complete ([NP-C](https://en.wikipedia.org/wiki/NP-completeness)) [combinatorial optimization](https://en.wikipedia.org/wiki/Combinatorial_optimization) problem, meaning that it is a finite set problem proven to be in the family of problems that are "unsolveable" in polynomial time. The definition is as follows:
 
@@ -23,7 +23,7 @@ _NOTE:_ The exhaustive and DP approach only looked for optimal solutions while t
 
 SS is a subproblem of the similarly NP-C [Knapsack Problem](https://en.wikipedia.org/wiki/Knapsack_problem#:~:text=The%20knapsack%20problem%20is%20a,is%20as%20large%20as%20possible.), and the parent problem of the polynomial time solvable problem [3SUM](https://en.wikipedia.org/wiki/3SUM), which asks if there exists a subset of length 3 whose sum is 0. 
 
-# Benchmark
+## Benchmark
 
 The following constraints were applied to create a testing benchmark of 100 SS instances:
 - The largest instances must be at least 20 times larger than the smallest instance
@@ -51,7 +51,7 @@ Based on these above requirements, the 100 instances were split into six types o
 91 - 100: Random 4
 > Instances of size n = 20, 21, ... 29 with random elements and target using the linear congruential generator method
 
-# Algorithms
+## Algorithms
 
 ## Exhaustive Solution
 
