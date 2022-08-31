@@ -51,7 +51,7 @@ Based on these above requirements, the 100 instances were split into six types o
 91 - 100: Random 4
 > Instances of size n = 20, 21, ... 29 with random elements and target using the linear congruential generator method
 
-## Algorithms
+# Algorithms
 
 ## Exhaustive Solution
 
