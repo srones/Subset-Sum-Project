@@ -71,8 +71,8 @@ Integer [Linear Programming](https://en.wikipedia.org/wiki/Linear_programming) i
 
 The ILP formulation of SS is as follows:
 
-> Maximize $\sum^n_{i=1}w_ix_i$\
-Where $\sum^n_{i=1}w_ix_i <= T, w_i \in \mathbb{Z}$
+> Maximize $$\sum^n_{i=1}w_ix_i$$\
+Where $$\sum^n_{i=1}w_ix_i <= T, w_i \in \mathbb{Z}$$
 
 SS.mod contains the AMPL model for the CPLEX solver, which uses LP relaxation as a bound for the ILP solution. 
 
